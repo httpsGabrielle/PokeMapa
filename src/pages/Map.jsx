@@ -36,27 +36,33 @@ export default function Mapa() {
         }}/>
       :''}
       <TouchableOpacity style={styles.addbtn}>
-        <Text>+</Text>
+        <Text style={styles.addbtnContent}>+</Text>
       </TouchableOpacity>
     </View>
   )
 }
 const styles = StyleSheet.create({
   main: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%'
+    ...StyleSheet.absoluteFill
   },
   map: {
-    width: '100%',
-    height: '100%'
+    ...StyleSheet.absoluteFill
   },
-  addbtn:{
-    fontWeight:'bold',
-    width: 10,
-    height: 10,
-    right: 8,
-    bottom: 8
+  addbtn: {
+    backgroundColor: '#7786C1',
+    borderRadius: 50,
+    position: 'absolute',
+    bottom: 32,
+    right: 32,
+    width: 64,
+    height: 64,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  addbtnContent: {
+    fontWeight: 'bold',
+    fontSize: 32,
+    color: 'white',
   }
 })
