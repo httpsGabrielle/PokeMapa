@@ -12,8 +12,8 @@ export default function Home() {
       </View>
       <View style={styles.containerBottom}>
         <View>
-          <Text style={styles.title}>Bem-Vindo ao PokeMapa</Text>
-          <Text style={styles.p}>Ajude a comunidade, descubra lugares novos e explore as pokeparadas mais perto de você</Text>
+          <Text style={styles.title}>Bem-vindo ao PokéMapa</Text>
+          <Text style={styles.p}>Ajude a comunidade, descubra lugares novos e explore as PokéStops mais perto de você</Text>
         </View>
         <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Map')}>
             <Text style={styles.buttonText}>
@@ -59,20 +59,24 @@ const styles = StyleSheet.create({
     padding: 16
   },
   title:{
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: 'bold',
     textAlign: 'center'
   },
   p:{
     marginTop: 16,
-    textAlign:'center'
+    marginBottom: 16,
+    textAlign:'center',
+    color: '#989898',
+    fontSize: 18
   },
   button:{
     backgroundColor: '#7786C1',
     width: 100,
     borderRadius: 24,
     width: '100%',
-    padding: 12
+    padding: 12,
+    marginBottom: 16
   },
   buttonText: {
     color: '#fff',
