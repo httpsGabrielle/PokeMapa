@@ -9,10 +9,20 @@ export default function Mapa() {
   const [location, setLocation] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [showCallout, setShowCallout] = useState(false);
-  const [value, onChangeText] = useState('Nome da Pokestop');
+  const [pokestopName, setPokestopName] = useState('');
   const [loading, setLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
+
+  const handleAdd = async ({ name, latitude, longitude }) => {
+    try {
+      const newPokestop = await addPokestop({ name, latitude: latitude.toString(), longitude: longitude.toString()})
+  
+      setMarkers(markers.concat(newPokestop))
+      setModalVisible(!modalVisible)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     const fetchPokestops = async () => {
@@ -48,16 +58,6 @@ export default function Mapa() {
     getLocation()
   }, [])
 
-  getAddress = async () => {
-    let {status} = await Location.requestForegroundPermissionsAsync(); // Get the location permission from the user and extract the 'status' key from it.
-    if(status !== 'granted') {
-
-        alert('permission denied!');
-        return;
-    }
-    let address = Location.reverseGeoCodeAsync([location.coords.latitude, location.coords.longitude]);
-  }
-
   if (errorMsg) {
     return (
       <View>
@@ -89,16 +89,22 @@ export default function Mapa() {
         <View style={styles.centeredView} onPress={() => setModalVisible(!modalVisible)}>
           <View style={styles.modalViewContent}>
             <TextInput
-                editable
-                maxLength={100}
-                onChangeText={text => onChangeText(text)}
-                value={value}
-                style={styles.textInput}
-              />
-            <Text style={styles.modalText}><Text style={{fontWeight: 'bold'}}>Latitude:</Text>  {location.coords.latitude}</Text>
-            <Text style={styles.modalText}><Text style={{fontWeight: 'bold'}}>Longitude:</Text> {location.coords.longitude}</Text>
+              placeholder='Nome da PokéStop'
+              onChangeText={setPokestopName}
+              value={pokestopName}
+              style={styles.textInput}
+            />
+            <Text style={styles.modalText}>
+              <Text style={{fontWeight: 'bold'}}>Latitude: {location.coords.latitude}</Text> 
+            </Text>
+            <Text style={styles.modalText}>
+              <Text style={{fontWeight: 'bold'}}>Longitude: {location.coords.longitude}</Text>
+            </Text>
 
-            <TouchableOpacity style={[styles.button, styles.fundoRoxo]} onPress={() => addPokestop({name: nome, latitude: latitude, longitude: longitude})}>
+            <TouchableOpacity 
+              style={[styles.button, styles.fundoRoxo]} 
+              onPress={() => handleAdd({name: pokestopName, latitude: location.coords.latitude, longitude: location.coords.longitude})}
+            >
               <Text style={styles.buttonText}>Cadastrar Pokestop</Text>
             </TouchableOpacity>
 
@@ -189,8 +195,10 @@ const styles = StyleSheet.create({
   textInput: {
     backgroundColor: '#fbfbfb',
     borderRadius: 4,
-    width: '90%',
-    padding: 4
+    width: '100%',
+    padding: 4,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1
   },
   contentCarregamento: {
     backgroundColor: '#ffffff',
