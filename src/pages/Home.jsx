@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
     justifyContent:'space-between',
     width: '100%',
     borderRadius: 24,
-    padding: 16
+    padding: 32
   },
   title:{
     fontSize: 32,
@@ -76,7 +75,6 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     width: '100%',
     padding: 12,
-    marginBottom: 16
   },
   buttonText: {
     color: '#fff',
