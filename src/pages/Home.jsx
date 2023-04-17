@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <View style={styles.main}>
       <View style={styles.containerLogo}>
-        {/* <MotiImage 
+        <MotiImage 
             from={{
               rotate: '0deg'
             }}
@@ -20,8 +20,7 @@ export default function Home() {
               duration: 1500,
               loop: true,
             }}
-          source={require('../../assets/logo.png')}/> */}
-          <Image source={require('../../assets/logo.png')}></Image>
+          source={require('../../assets/logo.png')}/>
       </View>
       <View style={styles.containerBottom}>
         <View>
