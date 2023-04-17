@@ -12,21 +12,6 @@ export default function Mapa() {
   const [showCallout, setShowCallout] = useState(false)
   const [loading, setLoading] = useState(true);
 
-  // const handlePressMarker = (marker) => {
-  //   setShowCallout()
-  //   return (
-  //     <View style={styles.callout}>
-  //       <Text styles={styles.calloutTitle}>{marker.name}</Text>
-  //       <Text styles={styles.calloutInfo}>
-  //         {Location.reverseGeocodeAsync({ latitude: Number(marker.latitude), longitude: Number(marker.longitude)})}
-  //       </Text>
-  //       <View style={styles.calloutBottom}>
-  //         <Text style={styles.calloutCloseBtn}>▾</Text>
-  //       </View>
-  //     </View>
-  //   )
-  // }
-
   useEffect(() => {
     const fetchPokestops = async () => {
       try {
