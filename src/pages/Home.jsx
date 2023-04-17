@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { MotiImage } from 'moti';
 
 export default function Home() {
   const navigation = useNavigation()
@@ -7,7 +8,19 @@ export default function Home() {
   return (
     <View style={styles.main}>
       <View style={styles.containerLogo}>
-        <Image source={require('../../assets/logo.png')}/>
+        <MotiImage 
+            from={{
+              rotate: '0deg'
+            }}
+            animate={{
+              rotate: '80deg'
+            }}
+            transition={{
+              type: 'timing',
+              duration: 1500,
+              loop: true,
+            }}
+          source={require('../../assets/logo.png')}/>
       </View>
       <View style={styles.containerBottom}>
         <View>
@@ -44,7 +57,7 @@ const styles = StyleSheet.create({
     color:'#fff'
   },
   containerLogo:{
-    flex: 3,
+    flex: 2,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -54,6 +67,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent:'space-between',
     width: '100%',
+    height: 'auto',
     borderRadius: 24,
     padding: 32
   },
